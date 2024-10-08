@@ -106,9 +106,9 @@ class StreamPhotoGalleryTile extends StatelessWidget {
                     // ignore: deprecated_member_use
                     chatThemeData.colorTheme.textHighEmphasis.withOpacity(0.5),
                 alignment: AlignmentDirectional.topEnd,
-                padding: const EdgeInsets.only(
+                padding: const EdgeInsetsDirectional.only(
                   top: 8,
-                  right: 8,
+                  end: 8,
                 ),
                 child: CircleAvatar(
                   radius: 12,

@@ -231,7 +231,7 @@ class StreamChannelListTile extends StatelessWidget {
                       .any((it) => it.type != AttachmentType.urlPreview);
 
                   return Padding(
-                    padding: const EdgeInsets.only(right: 4),
+                    padding: const EdgeInsetsDirectional.only(end: 4),
                     child:
                         sendingIndicatorBuilder?.call(context, lastMessage) ??
                             SendingIndicatorBuilder(

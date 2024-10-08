@@ -1162,9 +1162,9 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
                       color:
                           StreamChatTheme.of(context).colorTheme.accentPrimary,
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                          left: 5,
-                          right: 5,
+                        padding: const EdgeInsetsDirectional.only(
+                          start: 5,
+                          end: 5,
                           top: 2,
                           bottom: 2,
                         ),

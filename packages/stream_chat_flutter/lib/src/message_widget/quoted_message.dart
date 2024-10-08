@@ -40,9 +40,9 @@ class QuotedMessage extends StatelessWidget {
           : chatThemeData.ownMessageTheme,
       reverse: !isMyQuotedMessage,
       textBuilder: textBuilder,
-      padding: EdgeInsets.only(
-        right: 8,
-        left: 8,
+      padding: EdgeInsetsDirectional.only(
+        end: 8,
+        start: 8,
         top: 8,
         bottom: hasNonUrlAttachments ? 8 : 0,
       ),

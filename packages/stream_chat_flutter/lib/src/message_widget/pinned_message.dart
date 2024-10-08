@@ -23,7 +23,7 @@ class PinnedMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 8),
+      padding: const EdgeInsetsDirectional.only(start: 8, end: 8, top: 4, bottom: 8),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

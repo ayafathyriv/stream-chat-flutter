@@ -83,10 +83,10 @@ class StreamUrlAttachment extends StatelessWidget {
                     color: backgroundColor,
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(
+                    padding: const EdgeInsetsDirectional.only(
                       top: 8,
-                      left: 8,
-                      right: 12,
+                      start: 8,
+                      end: 12,
                       bottom: 4,
                     ),
                     child: Text(
