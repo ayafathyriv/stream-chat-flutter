@@ -1,8 +1,7 @@
 import 'package:jiffy/jiffy.dart';
 import 'package:stream_chat_flutter/src/message_list_view/message_list_view.dart';
 import 'package:stream_chat_flutter/src/misc/connection_status_builder.dart';
-import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart'
-    show User;
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart' show User;
 
 /// Translation strings for the stream chat widgets
 abstract class Translations {
@@ -434,8 +433,7 @@ class DefaultTranslations implements Translations {
   }
 
   @override
-  String get sendMessagePermissionError =>
-      "You don't have permission to send messages";
+  String get sendMessagePermissionError => "You don't have permission to send messages";
 
   @override
   String get emptyMessagesText => 'There are no messages currently';
@@ -492,8 +490,7 @@ class DefaultTranslations implements Translations {
   String get instantCommandsLabel => 'Instant Commands';
 
   @override
-  String fileTooLargeAfterCompressionError(double limitInMB) =>
-      'The file is too large to upload. '
+  String fileTooLargeAfterCompressionError(double limitInMB) => 'The file is too large to upload. '
       'The file size limit is $limitInMB MB. '
       'We tried compressing it, but it was not enough.';
 
@@ -502,8 +499,7 @@ class DefaultTranslations implements Translations {
       'The file is too large to upload. The file size limit is $limitInMB MB.';
 
   @override
-  String get couldNotReadBytesFromFileError =>
-      'Could not read bytes from file.';
+  String get couldNotReadBytesFromFileError => 'Could not read bytes from file.';
 
   @override
   String get addAFileLabel => 'Add a file';
@@ -533,8 +529,7 @@ class DefaultTranslations implements Translations {
   String get addMoreFilesLabel => 'Add more files';
 
   @override
-  String get enablePhotoAndVideoAccessMessage =>
-      'Please enable access to your photos'
+  String get enablePhotoAndVideoAccessMessage => 'Please enable access to your photos'
       '\nand videos so you can share them with friends.';
 
   @override
@@ -544,8 +539,7 @@ class DefaultTranslations implements Translations {
   String get flagMessageLabel => 'Flag Message';
 
   @override
-  String get flagMessageQuestion =>
-      'Do you want to send a copy of this message to a'
+  String get flagMessageQuestion => 'Do you want to send a copy of this message to a'
       '\nmoderator for further investigation?';
 
   @override
@@ -558,8 +552,7 @@ class DefaultTranslations implements Translations {
   String get flagMessageSuccessfulLabel => 'Message flagged';
 
   @override
-  String get flagMessageSuccessfulText =>
-      'The message has been reported to a moderator.';
+  String get flagMessageSuccessfulText => 'The message has been reported to a moderator.';
 
   @override
   String get deleteLabel => 'DELETE';
@@ -568,12 +561,10 @@ class DefaultTranslations implements Translations {
   String get deleteMessageLabel => 'Delete Message';
 
   @override
-  String get deleteMessageQuestion =>
-      'Are you sure you want to permanently delete this\nmessage?';
+  String get deleteMessageQuestion => 'Are you sure you want to permanently delete this\nmessage?';
 
   @override
-  String get operationCouldNotBeCompletedText =>
-      "The operation couldn't be completed.";
+  String get operationCouldNotBeCompletedText => "The operation couldn't be completed.";
 
   @override
   String get replyLabel => 'Reply';
@@ -625,12 +616,14 @@ class DefaultTranslations implements Translations {
     } else if (date == yesterday) {
       return 'yesterday';
     } else {
+      Jiffy.setLocale('en');
       return 'on ${Jiffy.parseFromDateTime(date).MMMd}';
     }
   }
 
   @override
   String sentAtText({required DateTime date, required DateTime time}) {
+    Jiffy.setLocale('en');
     final atTime = Jiffy.parseFromDateTime(time.toLocal());
     return 'Sent ${_getDay(date)} at ${atTime.jm}';
   }
@@ -651,8 +644,7 @@ class DefaultTranslations implements Translations {
   String get letsStartChattingLabel => 'Let’s start chatting!';
 
   @override
-  String get sendingFirstMessageLabel =>
-      'How about sending your first message to a friend?';
+  String get sendingFirstMessageLabel => 'How about sending your first message to a friend?';
 
   @override
   String get startAChatLabel => 'Start a chat';
@@ -664,8 +656,7 @@ class DefaultTranslations implements Translations {
   String get deleteConversationLabel => 'Delete Conversation';
 
   @override
-  String get deleteConversationQuestion =>
-      'Are you sure you want to delete this conversation?';
+  String get deleteConversationQuestion => 'Are you sure you want to delete this conversation?';
 
   @override
   String get streamChatLabel => 'Stream Chat';
@@ -704,8 +695,7 @@ class DefaultTranslations implements Translations {
   String get leaveConversationLabel => 'Leave conversation';
 
   @override
-  String get leaveConversationQuestion =>
-      'Are you sure you want to leave this conversation?';
+  String get leaveConversationQuestion => 'Are you sure you want to leave this conversation?';
 
   @override
   String get showInChatLabel => 'Show in Chat';
@@ -809,8 +799,7 @@ Attachment limit exceeded: it's not possible to add more than $limit attachments
   }
 
   @override
-  String get linkDisabledDetails =>
-      'Sending links is not allowed in this conversation.';
+  String get linkDisabledDetails => 'Sending links is not allowed in this conversation.';
 
   @override
   String get linkDisabledError => 'Links are disabled';
@@ -826,7 +815,455 @@ Attachment limit exceeded: it's not possible to add more than $limit attachments
   String get allowFileAccessMessage => 'Allow access to files';
 
   @override
-  String get markUnreadError =>
-      'Error marking message unread. Cannot mark unread messages older than the'
+  String get markUnreadError => 'Error marking message unread. Cannot mark unread messages older than the'
       ' newest 100 channel messages.';
+}
+
+/// Arabic implementation of Translation strings for the stream chat widgets
+class ArabicTranslation implements Translations {
+  const ArabicTranslation._();
+
+  /// Singleton instance of [ArabicTranslation]
+  static const instance = ArabicTranslation._();
+
+  @override
+  String get launchUrlError => 'لا أستطيع إطلاق الرابط';
+
+  @override
+  String get loadingUsersError => 'لا يمكن تحميل المستخدمين';
+
+  @override
+  String get noUsersLabel => 'لا يوجد مستخدمين';
+
+  @override
+  String get noPhotoOrVideoLabel => 'لا يوجد صورة او فيديو';
+
+  @override
+  String get retryLabel => 'اعادة المحاولة';
+
+  @override
+  String get userLastOnlineText => 'اخر ظهور';
+
+  @override
+  String get userOnlineText => 'متصل';
+
+  @override
+  String userTypingText(Iterable<User> users) {
+    if (users.isEmpty) return '';
+    final first = users.first;
+    if (users.length == 1) {
+      return '${first.name} يكتب';
+    }
+    return '${first.name} و ${users.length - 1} مزيد من يكتب';
+  }
+
+  @override
+  String get threadReplyLabel => 'الرد على المحادثة';
+
+  @override
+  String get onlyVisibleToYouText => 'تظهر فقط لك';
+
+  @override
+  String threadReplyCountText(int count) => '$count ردود المحادثة';
+
+  @override
+  String attachmentsUploadProgressText({
+    required int remaining,
+    required int total,
+  }) =>
+      'يتم تحميل $remaining/$total ...';
+
+  @override
+  String pinnedByUserText({
+    required User pinnedBy,
+    required User currentUser,
+  }) {
+    final pinnedByCurrentUser = currentUser.id == pinnedBy.id;
+    if (pinnedByCurrentUser) return 'تم تثبيته بواسطةك';
+    return 'تم تثبيته بواسطة ${pinnedBy.name}';
+  }
+
+  @override
+  String get sendMessagePermissionError => 'لا يمكنك ارسال رسالة لأي مستخدم مشترك';
+
+  @override
+  String get emptyMessagesText => 'لا يوجد رسائل';
+
+  @override
+  String get genericErrorText => 'حدث خطأ ما';
+
+  @override
+  String get loadingMessagesError => 'حدث خطأ في تحميل رسائل';
+
+  @override
+  String resultCountText(int count) => '$count نتائج';
+
+  @override
+  String get messageDeletedText => 'تم حذف هذه الرسالة';
+
+  @override
+  String get messageDeletedLabel => 'رسالة محذوفة';
+
+  @override
+  String get messageReactionsLabel => 'تفاعلات الرسائل';
+
+  @override
+  String get emptyChatMessagesText => 'لا يوجد رسائل في هذه المحادثة';
+
+  @override
+  String threadSeparatorText(int replyCount) {
+    if (replyCount == 1) return '1 رد';
+    return '$replyCount ردود';
+  }
+
+  @override
+  String get connectedLabel => 'متصل';
+
+  @override
+  String get disconnectedLabel => 'غير متصل';
+
+  @override
+  String get reconnectingLabel => 'جاري اعادة الاتصال...';
+
+  @override
+  String get alsoSendAsDirectMessageLabel => 'أرسل أيضًا كرسالة مباشرة';
+
+  @override
+  String get addACommentOrSendLabel => 'أضف تعليقًا أو أرسل';
+
+  @override
+  String get searchGifLabel => 'أبحث عن GIF';
+
+  @override
+  String get writeAMessageLabel => 'اكتب رسالتك';
+
+  @override
+  String get instantCommandsLabel => 'الاوامر الفورية';
+
+  @override
+  String fileTooLargeAfterCompressionError(double limitInMB) => 'الملف كبير جدًا ولا يمكن تحميله'
+      ' الحد الأعلى للملف هو $limitInMB ميجا. '
+      'حاولنا ضغطه، ولكن لم يكن ذلك كافياً';
+
+  @override
+  String fileTooLargeError(double limitInMB) =>
+      'The file is too large to upload. The file size limit is $limitInMB ميجا.';
+
+  @override
+  String get couldNotReadBytesFromFileError => 'لا يمكنك تحميل البيانات من هذا الملف';
+
+  @override
+  String get addAFileLabel => 'إضف ملفًا';
+
+  @override
+  String get photoFromCameraLabel => 'صورة من الكاميرا';
+
+  @override
+  String get uploadAFileLabel => 'حمل ملف';
+
+  @override
+  String get uploadAPhotoLabel => 'حمل صورة';
+
+  @override
+  String get uploadAVideoLabel => 'حمل فيديو';
+
+  @override
+  String get videoFromCameraLabel => 'فيديو من الكاميرا';
+
+  @override
+  String get okLabel => 'موافق';
+
+  @override
+  String get somethingWentWrongError => 'حدث خطأ ما';
+
+  @override
+  String get addMoreFilesLabel => 'إضف المزيد من الملفات';
+
+  @override
+  String get enablePhotoAndVideoAccessMessage =>
+      'يرجى تمكين الوصول إلى صورك وفيديوهاتك حتى تتمكن من مشاركتها مع الأصدقاء.';
+  @override
+  String get allowGalleryAccessMessage => 'الرجاء تمكين الوصول إلى صورك';
+
+  @override
+  String get flagMessageLabel => 'إبلاغ عن رسالة';
+
+  @override
+  String get flagMessageQuestion => 'هل ترغب في إرسال نسخة من هذه الرسالة إلى'
+      '\nمشرف للتحقيق في الأمر؟';
+
+  @override
+  String get flagLabel => 'إبلاغ';
+
+  @override
+  String get cancelLabel => 'الغاء';
+
+  @override
+  String get flagMessageSuccessfulLabel => 'تم الإبلاغ بنجاح';
+
+  @override
+  String get flagMessageSuccessfulText => 'تم الإبلاغ عن الرسالة إلى المشرف.';
+
+  @override
+  String get deleteLabel => 'حذف';
+
+  @override
+  String get deleteMessageLabel => 'حذف رسالة';
+
+  @override
+  String get deleteMessageQuestion => 'هل ترغب في حذف هذه الرسالة؟';
+
+  @override
+  String get operationCouldNotBeCompletedText => "لا يمكن حذف هذه الرسالة";
+
+  @override
+  String get replyLabel => 'رد';
+
+  @override
+  String togglePinUnpinText({required bool pinned}) {
+    if (pinned) return 'إلغاء تثبيت من المحادثة';
+    return 'تثبيت في المحادثة';
+  }
+
+  @override
+  String get markAsUnreadLabel => 'تحديد كغير مقروء';
+
+  @override
+  String unreadCountIndicatorLabel({required int unreadCount}) {
+    return '$unreadCount غير مقروء';
+  }
+
+  @override
+  String toggleDeleteRetryDeleteMessageText({required bool isDeleteFailed}) {
+    if (isDeleteFailed) return 'إعادة محاولة حذف الرسالة';
+    return 'حذف الرسالة';
+  }
+
+  @override
+  String get copyMessageLabel => 'نسخ الرسالة';
+
+  @override
+  String get editMessageLabel => 'تعديل الرسالة';
+
+  @override
+  String toggleResendOrResendEditedMessage({required bool isUpdateFailed}) {
+    if (isUpdateFailed) return 'إعادة إرسال الرسالة المعدلة';
+    return 'إرسال';
+  }
+
+  @override
+  String get photosLabel => 'صور';
+
+  String _getDay(DateTime dateTime) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final yesterday = DateTime(now.year, now.month, now.day - 1);
+
+    final date = DateTime(dateTime.year, dateTime.month, dateTime.day);
+
+    if (date == today) {
+      return 'اليوم';
+    } else if (date == yesterday) {
+      return 'أمس';
+    } else {
+      Jiffy.setLocale('ar');
+      return 'في ${Jiffy.parseFromDateTime(date).MMMd}';
+    }
+  }
+
+  @override
+  String sentAtText({required DateTime date, required DateTime time}) {
+    Jiffy.setLocale('ar');
+    final atTime = Jiffy.parseFromDateTime(time.toLocal());
+    return 'تم الإرسال ${_getDay(date)} في ${atTime.jm}';
+  }
+
+  @override
+  String get todayLabel => 'اليوم';
+
+  @override
+  String get yesterdayLabel => 'أمس';
+
+  @override
+  String get channelIsMutedText => 'تم كتم القناة';
+
+  @override
+  String get noTitleText => 'لا يوجد عنوان';
+
+  @override
+  String get letsStartChattingLabel => 'لنبدأ الدردشة!';
+
+  @override
+  String get sendingFirstMessageLabel => 'كيف ترسل رسالتك الأولى إلى صديق؟';
+
+  @override
+  String get startAChatLabel => 'ابدأ محادثة';
+  @override
+  String get loadingChannelsError => 'خطأ في تحميل القنوات';
+
+  @override
+  String get deleteConversationLabel => 'حذف المحادثة';
+
+  @override
+  String get deleteConversationQuestion => 'هل أنت متأكد أنك تريد حذف هذه المحادثة؟';
+
+  @override
+  String get streamChatLabel => 'دردشة ستريم';
+
+  @override
+  String get searchingForNetworkText => 'البحث عن الشبكة';
+
+  @override
+  String get offlineLabel => 'غير متصل...';
+
+  @override
+  String get tryAgainLabel => 'حاول مرة أخرى';
+
+  @override
+  String membersCountText(int count) {
+    if (count == 1) return '1 عضو';
+    return '$count أعضاء';
+  }
+
+  @override
+  String watchersCountText(int count) {
+    if (count == 1) return '1 متصل';
+    return '$count متصلون';
+  }
+
+  @override
+  String get viewInfoLabel => 'عرض المعلومات';
+
+  @override
+  String get leaveGroupLabel => 'مغادرة المجموعة';
+
+  @override
+  String get leaveLabel => 'مغادرة';
+
+  @override
+  String get leaveConversationLabel => 'مغادرة المحادثة';
+
+  @override
+  String get leaveConversationQuestion => 'هل أنت متأكد أنك تريد مغادرة هذه المحادثة؟';
+
+  @override
+  String get showInChatLabel => 'عرض في الدردشة';
+
+  @override
+  String get saveImageLabel => 'حفظ الصورة';
+
+  @override
+  String get saveVideoLabel => 'حفظ الفيديو';
+
+  @override
+  String get uploadErrorLabel => 'خطأ في التحميل';
+
+  @override
+  String get giphyLabel => 'جيفي';
+
+  @override
+  String get shuffleLabel => 'خلط';
+
+  @override
+  String get sendLabel => 'إرسال';
+
+  @override
+  String get withText => 'مع';
+
+  @override
+  String get inText => 'في';
+
+  @override
+  String get youText => 'أنت';
+
+  @override
+  String galleryPaginationText({
+    required int currentPage,
+    required int totalPages,
+  }) =>
+      '${currentPage + 1} من $totalPages';
+
+  @override
+  String get fileText => 'ملف';
+
+  @override
+  String get replyToMessageLabel => 'رد على الرسالة';
+
+  @override
+  String get slowModeOnLabel => 'الوضع البطيء مفعل';
+
+  @override
+  String get viewLibrary => 'عرض المكتبة';
+
+  @override
+  String attachmentLimitExceedError(int limit) => """
+تجاوز حد المرفقات: لا يمكن إضافة أكثر من $limit مرفقات""";
+
+  @override
+  String get downloadLabel => 'تنزيل';
+
+  @override
+  String toggleMuteUnmuteUserText({required bool isMuted}) {
+    if (isMuted) {
+      return 'رفع كتم الصوت عن المستخدم';
+    } else {
+      return 'كتم صوت المستخدم';
+    }
+  }
+
+  @override
+  String toggleMuteUnmuteGroupQuestion({required bool isMuted}) {
+    if (isMuted) {
+      return 'هل أنت متأكد أنك تريد رفع كتم صوت هذه المجموعة؟';
+    } else {
+      return 'هل أنت متأكد أنك تريد كتم صوت هذه المجموعة؟';
+    }
+  }
+
+  @override
+  String toggleMuteUnmuteUserQuestion({required bool isMuted}) {
+    if (isMuted) {
+      return 'هل أنت متأكد أنك تريد رفع كتم صوت هذا المستخدم؟';
+    } else {
+      return 'هل أنت متأكد أنك تريد كتم صوت هذا المستخدم؟';
+    }
+  }
+
+  @override
+  String toggleMuteUnmuteAction({required bool isMuted}) {
+    if (isMuted) {
+      return 'رفع كتم الصوت';
+    } else {
+      return 'كتم الصوت';
+    }
+  }
+
+  @override
+  String toggleMuteUnmuteGroupText({required bool isMuted}) {
+    if (isMuted) {
+      return 'رفع كتم الصوت عن المجموعة';
+    } else {
+      return 'كتم صوت المجموعة';
+    }
+  }
+
+  @override
+  String get linkDisabledDetails => 'إرسال الروابط غير مسموح به في هذه المحادثة.';
+
+  @override
+  String get linkDisabledError => 'الروابط معطلة';
+
+  @override
+  String unreadMessagesSeparatorText() => 'رسائل جديدة';
+
+  @override
+  String get enableFileAccessMessage => 'يرجى تمكين الوصول إلى الملفات'
+      '\nحتى تتمكن من مشاركتها مع الأصدقاء.';
+
+  @override
+  String get allowFileAccessMessage => 'السماح بالوصول إلى الملفات';
+
+  @override
+  String get markUnreadError => 'خطأ في تعليم الرسالة كغير مقروء. لا يمكن تعليم الرسائل غير المقروءة الأقدم من'
+      ' أحدث 100 رسالة في القناة.';
 }
