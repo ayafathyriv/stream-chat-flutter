@@ -28,10 +28,10 @@ class StreamInfoTile extends StatelessWidget {
   final bool showMessage;
 
   /// Anchor for tile - [portalAnchor] for [PortalEntry]
-  final AlignmentDirectional? tileAnchor;
+  final Alignment? tileAnchor;
 
   /// Alignment for child - [childAnchor] for [PortalEntry]
-  final AlignmentDirectional? childAnchor;
+  final Alignment? childAnchor;
 
   /// [TextStyle] for message
   final TextStyle? textStyle;
@@ -45,8 +45,8 @@ class StreamInfoTile extends StatelessWidget {
     return PortalTarget(
       visible: showMessage,
       anchor: Aligned(
-        follower: tileAnchor ?? AlignmentDirectional.topCenter,
-        target: childAnchor ?? AlignmentDirectional.bottomCenter,
+        follower: tileAnchor ?? Alignment.topCenter,
+        target: childAnchor ?? Alignment.bottomCenter,
       ),
       portalFollower: Container(
         height: 25,
