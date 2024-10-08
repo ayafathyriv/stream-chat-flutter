@@ -79,9 +79,9 @@ class StreamUserMentionTile extends StatelessWidget {
           ),
           trailing ??
               Padding(
-                padding: const EdgeInsets.only(
-                  right: 18,
-                  left: 8,
+                padding: const EdgeInsetsDirectional.only(
+                  end: 18,
+                  start: 8,
                 ),
                 child: StreamSvgIcon.mentions(
                   color: chatThemeData.colorTheme.accentPrimary,

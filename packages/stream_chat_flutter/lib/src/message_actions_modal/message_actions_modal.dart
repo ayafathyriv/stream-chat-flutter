@@ -152,8 +152,8 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
                 ),
                 const SizedBox(height: 8),
                 Padding(
-                  padding: EdgeInsets.only(
-                    left: widget.reverse ? 0 : 40,
+                  padding: EdgeInsetsDirectional.only(
+                    start: widget.reverse ? 0 : 40,
                   ),
                   child: SizedBox(
                     width: mediaQueryData.size.width * 0.75,

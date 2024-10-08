@@ -35,9 +35,9 @@ class StreamUnreadIndicator extends StatelessWidget {
                 .channelPreviewTheme
                 .unreadCounterColor,
             child: Padding(
-              padding: const EdgeInsets.only(
-                left: 5,
-                right: 5,
+              padding: const EdgeInsetsDirectional.only(
+                start: 5,
+                end: 5,
                 top: 2,
                 bottom: 1,
               ),

@@ -173,7 +173,7 @@ class StreamChannelHeader extends StatelessWidget
             actions: actions ??
                 <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(right: 10),
+                    padding: const EdgeInsetsDirectional.only(end: 10),
                     child: Center(
                       child: StreamChannelAvatar(
                         channel: channel,

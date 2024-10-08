@@ -637,9 +637,9 @@ class StreamMessageInputState extends State<StreamMessageInput>
                   if (_effectiveController.message.parentId != null &&
                       !widget.hideSendAsDm)
                     Padding(
-                      padding: const EdgeInsets.only(
-                        right: 12,
-                        left: 12,
+                      padding: const EdgeInsetsDirectional.only(
+                        end: 12,
+                        start: 12,
                         bottom: 12,
                       ),
                       child: DmCheckbox(
@@ -867,11 +867,11 @@ class StreamMessageInputState extends State<StreamMessageInput>
 
   Expanded _buildTextInput(BuildContext context) {
     final margin = (widget.sendButtonLocation == SendButtonLocation.inside
-            ? const EdgeInsets.only(right: 8)
-            : EdgeInsets.zero) +
+            ? const EdgeInsetsDirectional.only(end: 8)
+            : EdgeInsetsDirectional.zero) +
         (widget.actionsLocation != ActionsLocation.left || _commandEnabled
-            ? const EdgeInsets.only(left: 8)
-            : EdgeInsets.zero);
+            ? const EdgeInsetsDirectional.only(start: 8)
+            : EdgeInsetsDirectional.zero);
 
     return Expanded(
       child: DropTarget(
@@ -1064,7 +1064,7 @@ class StreamMessageInputState extends State<StreamMessageInput>
         children: [
           if (_commandEnabled)
             Padding(
-              padding: const EdgeInsets.only(right: 8),
+              padding: const EdgeInsetsDirectional.only(end: 8),
               child: IconButton(
                 icon: StreamSvgIcon.closeSmall(),
                 splashRadius: 24,
@@ -1505,7 +1505,7 @@ class OGAttachmentPreview extends StatelessWidget {
                 ),
               ),
             ),
-            padding: const EdgeInsets.only(left: 6),
+            padding: const EdgeInsetsDirectional.only(start: 6),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
