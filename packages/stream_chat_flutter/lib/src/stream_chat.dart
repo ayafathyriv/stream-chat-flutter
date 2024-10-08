@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
@@ -92,8 +93,7 @@ class StreamChatState extends State<StreamChat> {
   StreamChatClient get client => widget.client;
 
   /// Gets configuration options from widget
-  StreamChatConfigurationData get streamChatConfigData =>
-      widget.streamChatConfigData ?? StreamChatConfigurationData();
+  StreamChatConfigurationData get streamChatConfigData => widget.streamChatConfigData ?? StreamChatConfigurationData();
 
   @override
   void initState() {
@@ -131,9 +131,8 @@ class StreamChatState extends State<StreamChat> {
                   child: Builder(
                     builder: (context) {
                       StreamChatClient.additionalHeaders = {
-                        'X-Stream-Client':
-                            '${StreamChatClient.defaultUserAgent}-'
-                                'ui-${StreamChatClient.packageVersion}',
+                        'X-Stream-Client': '${StreamChatClient.defaultUserAgent}-'
+                            'ui-${StreamChatClient.packageVersion}',
                       };
                       return widget.child ?? const Offstage();
                     },
@@ -164,12 +163,7 @@ class StreamChatState extends State<StreamChat> {
 
   @override
   void didChangeDependencies() {
-    final currentLocale =
-        Localizations.localeOf(context).toString().toLowerCase();
-    final availableLocales = Jiffy.getSupportedLocales();
-    if (availableLocales.contains(currentLocale)) {
-      Jiffy.setLocale(currentLocale);
-    }
+    Jiffy.setLocale(context.textDirection == TextDirection.ltr ? 'en' : 'ar');
     super.didChangeDependencies();
   }
 }
