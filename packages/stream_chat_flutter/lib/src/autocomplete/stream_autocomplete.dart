@@ -24,16 +24,16 @@ enum OptionsAlignment {
   Anchor _toAnchor() {
     switch (this) {
       case OptionsAlignment.below:
-        return Aligned(
+        return const Aligned(
           widthFactor: 1,
-          follower: AlignmentDirectional.topCenter,
-          target: AlignmentDirectional.bottomCenter,
+          follower: Alignment.topCenter,
+          target: Alignment.bottomCenter,
         );
       case OptionsAlignment.above:
-        return Aligned(
+        return const Aligned(
           widthFactor: 1,
-          follower: AlignmentDirectional.bottomCenter,
-          target: AlignmentDirectional.topCenter,
+          follower: Alignment.bottomCenter,
+          target: Alignment.topCenter,
         );
     }
   }

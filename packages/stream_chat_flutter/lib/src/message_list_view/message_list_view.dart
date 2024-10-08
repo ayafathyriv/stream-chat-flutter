@@ -573,8 +573,8 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
 
             return StreamInfoTile(
               showMessage: widget.showConnectionStateTile && showStatus,
-              tileAnchor: AlignmentDirectional.topCenter,
-              childAnchor: AlignmentDirectional.topCenter,
+              tileAnchor: Alignment.topCenter,
+              childAnchor: Alignment.topCenter,
               message: statusString,
               child: LazyLoadScrollView(
                 onStartOfPage: () async {
