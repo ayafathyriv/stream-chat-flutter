@@ -234,7 +234,7 @@ class AttachmentActionsModal extends StatelessWidget {
                       .toList(),
                 ]
                     .map<Widget>((e) => Align(
-                          alignment: Alignment.centerRight,
+                          alignment: AlignmentDirectional.centerEnd,
                           child: e,
                         ))
                     .insertBetween(

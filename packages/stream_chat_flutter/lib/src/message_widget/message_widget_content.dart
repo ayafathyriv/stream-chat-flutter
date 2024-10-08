@@ -285,11 +285,11 @@ class MessageWidgetContent extends StatelessWidget {
                                 )
                               : null,
                           anchor: Aligned(
-                            follower: Alignment(
+                            follower: AlignmentDirectional(
                               reverse ? 1 : -1,
                               -1,
                             ),
-                            target: Alignment(
+                            target: AlignmentDirectional(
                               reverse ? -1 : 1,
                               -1,
                             ),

@@ -178,7 +178,7 @@ class _MessageViewState extends State<MessageView> {
                 final item = _messages[index];
                 if (item.user?.id == widget.channel.client.uid) {
                   return Align(
-                    alignment: Alignment.centerRight,
+                    alignment: AlignmentDirectional.centerEnd,
                     child: Padding(
                       padding: const EdgeInsets.all(8),
                       child: Text(item.text ?? ''),
@@ -186,7 +186,7 @@ class _MessageViewState extends State<MessageView> {
                   );
                 } else {
                   return Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: AlignmentDirectional.centerStart,
                     child: Padding(
                       padding: const EdgeInsets.all(8),
                       child: Text(item.text ?? ''),

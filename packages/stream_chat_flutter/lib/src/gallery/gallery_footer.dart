@@ -192,7 +192,7 @@ class _StreamGalleryFooterState extends State<StreamGalleryFooter> {
                     ),
                   ),
                   Align(
-                    alignment: Alignment.centerRight,
+                    alignment: AlignmentDirectional.centerEnd,
                     child: IconButton(
                       icon: StreamSvgIcon.close(
                         color: galleryFooterThemeData.bottomSheetCloseIconColor,

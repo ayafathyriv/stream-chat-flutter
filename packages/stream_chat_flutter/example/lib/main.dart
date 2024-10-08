@@ -309,8 +309,8 @@ class _ChannelPageState extends State<ChannelPage> {
                         backgroundBuilder: (context, details) {
                           // The alignment of the swipe action.
                           final alignment = isMyMessage
-                              ? Alignment.centerRight //
-                              : Alignment.centerLeft;
+                              ? AlignmentDirectional.centerEnd //
+                              : AlignmentDirectional.centerStart;
 
                           // The progress of the swipe action.
                           final progress =

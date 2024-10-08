@@ -89,8 +89,8 @@ class _DesktopReactionsBuilderState extends State<DesktopReactionsBuilder> {
       visible: _showReactionsPopup,
       portalCandidateLabels: const [kPortalMessageListViewLabel],
       anchor: Aligned(
-        target: widget.reverse ? Alignment.topRight : Alignment.topLeft,
-        follower: widget.reverse ? Alignment.bottomRight : Alignment.bottomLeft,
+        target: widget.reverse ? AlignmentDirectional.topEnd : AlignmentDirectional.topStart,
+        follower: widget.reverse ? AlignmentDirectional.bottomEnd : AlignmentDirectional.bottomStart,
         shiftToWithinBound: const AxisFlag(y: true),
       ),
       portalFollower: MouseRegion(
