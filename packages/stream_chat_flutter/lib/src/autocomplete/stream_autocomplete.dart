@@ -24,16 +24,16 @@ enum OptionsAlignment {
   Anchor _toAnchor() {
     switch (this) {
       case OptionsAlignment.below:
-        return const Aligned(
+        return Aligned(
           widthFactor: 1,
-          follower: Alignment.topCenter,
-          target: Alignment.bottomCenter,
+          follower: AlignmentDirectional.topCenter,
+          target: AlignmentDirectional.bottomCenter,
         );
       case OptionsAlignment.above:
-        return const Aligned(
+        return Aligned(
           widthFactor: 1,
-          follower: Alignment.bottomCenter,
-          target: Alignment.topCenter,
+          follower: AlignmentDirectional.bottomCenter,
+          target: AlignmentDirectional.topCenter,
         );
     }
   }
@@ -148,8 +148,7 @@ class StreamAutocompleteTrigger {
     final cursorPosition = textEditingValue.selection.baseOffset;
 
     // Find the first [trigger] location before the input cursor.
-    final firstTriggerIndexBeforeCursor =
-        text.substring(0, cursorPosition).lastIndexOf(trigger);
+    final firstTriggerIndexBeforeCursor = text.substring(0, cursorPosition).lastIndexOf(trigger);
 
     // If the [trigger] is not found before the cursor, then it's not a trigger.
     if (firstTriggerIndexBeforeCursor == -1) return null;
@@ -164,9 +163,7 @@ class StreamAutocompleteTrigger {
     // valid examples: "@user", "Hello @user"
     // invalid examples: "Hello@user"
     final textBeforeTrigger = text.substring(0, firstTriggerIndexBeforeCursor);
-    if (triggerOnlyAfterSpace &&
-        textBeforeTrigger.isNotEmpty &&
-        !textBeforeTrigger.endsWith(' ')) {
+    if (triggerOnlyAfterSpace && textBeforeTrigger.isNotEmpty && !textBeforeTrigger.endsWith(' ')) {
       return null;
     }
 
@@ -287,10 +284,7 @@ class _StreamAutocompleteState extends State<StreamAutocomplete> {
 
   // True if the state indicates that the options should be visible.
   bool get _shouldShowOptions {
-    return !_hideOptions &&
-        _focusNode.hasFocus &&
-        _currentQuery != null &&
-        _currentTrigger != null;
+    return !_hideOptions && _focusNode.hasFocus && _currentQuery != null && _currentTrigger != null;
   }
 
   /// Accepts and replaces the current query with the given [option] and closes
@@ -467,8 +461,7 @@ class _StreamAutocompleteState extends State<StreamAutocomplete> {
   @override
   void initState() {
     super.initState();
-    _messageEditingController =
-        widget.messageEditingController ?? StreamMessageEditingController();
+    _messageEditingController = widget.messageEditingController ?? StreamMessageEditingController();
     _messageEditingController.addListener(_onChangedField);
     _focusNode = widget.focusNode ?? FocusNode();
     _focusNode.addListener(_onChangedFocus);

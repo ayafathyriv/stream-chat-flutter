@@ -24,7 +24,7 @@ class StreamUserAvatar extends StatelessWidget {
     this.onLongPress,
     this.showOnlineStatus = true,
     this.borderRadius,
-    this.onlineIndicatorAlignment = Alignment.topRight,
+    this.onlineIndicatorAlignment = AlignmentDirectional.topEnd,
     this.selected = false,
     this.selectionColor,
     this.selectionThickness = 4,
@@ -36,8 +36,8 @@ class StreamUserAvatar extends StatelessWidget {
 
   /// Alignment of the online indicator
   ///
-  /// Defaults to `Alignment.topRight`
-  final Alignment onlineIndicatorAlignment;
+  /// Defaults to `AlignmentDirectional.topEnd`
+  final AlignmentDirectional onlineIndicatorAlignment;
 
   /// Sizing constraints of the avatar
   final BoxConstraints? constraints;

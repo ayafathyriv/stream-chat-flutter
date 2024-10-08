@@ -80,7 +80,7 @@ class StreamOptionListTile extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 16),
                       child: Align(
-                        alignment: Alignment.centerRight,
+                        alignment: AlignmentDirectional.centerEnd,
                         child: trailing ?? Container(),
                       ),
                     ),

@@ -701,8 +701,8 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
                 padding: widget.padding ?? const EdgeInsets.all(8),
                 child: FractionallySizedBox(
                   alignment: widget.reverse
-                      ? Alignment.centerRight
-                      : Alignment.centerLeft,
+                      ? AlignmentDirectional.centerEnd
+                      : AlignmentDirectional.centerStart,
                   widthFactor: widget.widthFactor,
                   child: Builder(builder: (context) {
                     return MessageWidgetContent(

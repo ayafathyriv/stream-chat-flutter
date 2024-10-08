@@ -110,16 +110,13 @@ class ReactionsCard extends StatelessWidget {
                 left: !reverse ? -3 : null,
                 right: reverse ? -3 : null,
                 child: Align(
-                  alignment:
-                      reverse ? Alignment.centerRight : Alignment.centerLeft,
+                  alignment: reverse ? AlignmentDirectional.centerEnd : AlignmentDirectional.centerStart,
                   child: StreamReactionBubble(
                     reactions: [reaction],
                     reverse: !reverse,
                     flipTail: !reverse,
-                    borderColor:
-                        messageTheme.reactionsBorderColor ?? Colors.transparent,
-                    backgroundColor: messageTheme.reactionsBackgroundColor ??
-                        Colors.transparent,
+                    borderColor: messageTheme.reactionsBorderColor ?? Colors.transparent,
+                    backgroundColor: messageTheme.reactionsBackgroundColor ?? Colors.transparent,
                     maskColor: chatThemeData.colorTheme.barsBg,
                     tailCirclesSpacing: 1,
                   ),

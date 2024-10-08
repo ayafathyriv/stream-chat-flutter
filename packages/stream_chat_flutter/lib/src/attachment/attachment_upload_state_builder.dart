@@ -118,7 +118,7 @@ class _PreparingState extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Align(
-          alignment: Alignment.topRight,
+          alignment: AlignmentDirectional.topEnd,
           child: _IconButton(
             icon: StreamSvgIcon.close(
               color: StreamChatTheme.of(context).colorTheme.barsBg,
@@ -127,7 +127,7 @@ class _PreparingState extends StatelessWidget {
           ),
         ),
         Align(
-          alignment: Alignment.topRight,
+          alignment: AlignmentDirectional.topEnd,
           child: StreamUploadProgressIndicator(
             uploaded: 0,
             total: double.maxFinite.toInt(),
@@ -157,7 +157,7 @@ class _InProgressState extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Align(
-          alignment: Alignment.topRight,
+          alignment: AlignmentDirectional.topEnd,
           child: _IconButton(
             icon: StreamSvgIcon.close(
               color: StreamChatTheme.of(context).colorTheme.barsBg,
@@ -166,7 +166,7 @@ class _InProgressState extends StatelessWidget {
           ),
         ),
         Align(
-          alignment: Alignment.topRight,
+          alignment: AlignmentDirectional.topEnd,
           child: StreamUploadProgressIndicator(
             uploaded: sent,
             total: total,

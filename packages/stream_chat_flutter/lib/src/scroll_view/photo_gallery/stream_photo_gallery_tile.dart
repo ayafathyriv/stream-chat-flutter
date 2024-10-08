@@ -105,7 +105,7 @@ class StreamPhotoGalleryTile extends StatelessWidget {
                 color:
                     // ignore: deprecated_member_use
                     chatThemeData.colorTheme.textHighEmphasis.withOpacity(0.5),
-                alignment: Alignment.topRight,
+                alignment: AlignmentDirectional.topEnd,
                 padding: const EdgeInsets.only(
                   top: 8,
                   right: 8,
