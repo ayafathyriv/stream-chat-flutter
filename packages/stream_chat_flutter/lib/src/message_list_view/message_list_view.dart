@@ -94,6 +94,7 @@ class StreamMessageListView extends StatefulWidget {
     this.threadBuilder,
     this.onThreadTap,
     this.dateDividerBuilder,
+    this.showDeleteMessage = false,
     // we need to use ClampingScrollPhysics to avoid the list view to bounce
     // when we are at the either end of the list view and try to use 'animateTo'
     // to animate in the same direction.
@@ -317,6 +318,8 @@ class StreamMessageListView extends StatefulWidget {
   /// {@macro spacingWidgetBuilder}
   final SpacingWidgetBuilder spacingWidgetBuilder;
 
+  ///
+  final bool showDeleteMessage;
   static Widget _defaultSpacingWidgetBuilder(
     BuildContext context,
     List<SpacingType> spacingTypes,
@@ -540,7 +543,7 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
             2 + // header + footer
             1 // parent message
         ;
-        
+
     Jiffy.setLocale(context.textDirection == TextDirection.ltr ? 'en' : 'ar');
 
     final child = Stack(
@@ -1007,7 +1010,7 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
       showResendMessage: false,
       showThreadReplyMessage: false,
       showCopyMessage: false,
-      showDeleteMessage: false,
+      showDeleteMessage: false || widget.showDeleteMessage,
       showEditMessage: false,
       showMarkUnreadMessage: false,
       message: message,
@@ -1305,7 +1308,7 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
         }
       },
       showEditMessage: isMyMessage,
-      showDeleteMessage: isMyMessage,
+      showDeleteMessage: isMyMessage || widget.showDeleteMessage,
       showThreadReplyMessage:
           !isThreadMessage && streamChannel?.channel.ownCapabilities.contains(PermissionType.sendReply) == true,
       showFlagButton: !isMyMessage,

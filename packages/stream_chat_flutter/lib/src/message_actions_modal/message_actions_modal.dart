@@ -109,8 +109,7 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
     final orientation = mediaQueryData.orientation;
 
     final _userPermissions = StreamChannel.of(context).channel.ownCapabilities;
-    final hasReactionPermission =
-        _userPermissions.contains(PermissionType.sendReaction);
+    final hasReactionPermission = _userPermissions.contains(PermissionType.sendReaction);
 
     final fontSize = widget.messageTheme.messageTextStyle?.fontSize;
     final streamChatThemeData = StreamChatTheme.of(context);
@@ -166,8 +165,7 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          if (widget.showReplyMessage &&
-                              widget.message.state.isCompleted)
+                          if (widget.showReplyMessage && widget.message.state.isCompleted)
                             ReplyButton(
                               onTap: () {
                                 Navigator.of(context).pop();
@@ -227,17 +225,16 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
                               onTap: _togglePin,
                               pinned: widget.message.pinned,
                             ),
+                          // TODO: Add message actions
                           if (widget.showDeleteMessage)
                             DeleteMessageButton(
-                              isDeleteFailed:
-                                  widget.message.state.isDeletingFailed,
+                              isDeleteFailed: widget.message.state.isDeletingFailed,
                               onTap: _showDeleteBottomSheet,
                             ),
-                          ...widget.customActions
-                              .map((action) => _buildCustomAction(
-                                    context,
-                                    action,
-                                  )),
+                          ...widget.customActions.map((action) => _buildCustomAction(
+                                context,
+                                action,
+                              )),
                         ].insertBetween(
                           Container(
                             height: 1,
@@ -337,8 +334,7 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
           okText: context.translations.okLabel,
         );
       } catch (err) {
-        if (err is StreamChatNetworkError &&
-            err.errorCode == ChatErrorCode.inputError) {
+        if (err is StreamChatNetworkError && err.errorCode == ChatErrorCode.inputError) {
           await showInfoBottomSheet(
             context,
             icon: StreamSvgIcon.flag(
