@@ -230,7 +230,7 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
                               onTap: _togglePin,
                               pinned: widget.message.pinned,
                             ),
-                          // TODO: Add message actions
+                        
                           if (widget.showDeleteMessage)
                             DeleteMessageButton(
                               isDeleteFailed: widget.message.state.isDeletingFailed,
