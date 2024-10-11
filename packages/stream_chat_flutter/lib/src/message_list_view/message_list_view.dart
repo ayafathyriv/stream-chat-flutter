@@ -94,7 +94,8 @@ class StreamMessageListView extends StatefulWidget {
     this.threadBuilder,
     this.onThreadTap,
     this.dateDividerBuilder,
-    this.showDeleteMessage = false,
+    this.isOwner = false,
+    this.isModerator = false,
     // we need to use ClampingScrollPhysics to avoid the list view to bounce
     // when we are at the either end of the list view and try to use 'animateTo'
     // to animate in the same direction.
@@ -319,7 +320,10 @@ class StreamMessageListView extends StatefulWidget {
   final SpacingWidgetBuilder spacingWidgetBuilder;
 
   ///
-  final bool showDeleteMessage;
+  final bool isOwner;
+
+  ///
+  final bool isModerator;
   static Widget _defaultSpacingWidgetBuilder(
     BuildContext context,
     List<SpacingType> spacingTypes,
@@ -1010,7 +1014,7 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
       showResendMessage: false,
       showThreadReplyMessage: false,
       showCopyMessage: false,
-      showDeleteMessage: false || widget.showDeleteMessage,
+      showDeleteMessage: false || widget.isOwner,
       showEditMessage: false,
       showMarkUnreadMessage: false,
       message: message,
@@ -1308,7 +1312,8 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
         }
       },
       showEditMessage: isMyMessage,
-      showDeleteMessage: isMyMessage || widget.showDeleteMessage,
+      showDeleteMessage: isMyMessage || widget.isOwner,
+      showBanUser: widget.isOwner || widget.isModerator,
       showThreadReplyMessage:
           !isThreadMessage && streamChannel?.channel.ownCapabilities.contains(PermissionType.sendReply) == true,
       showFlagButton: !isMyMessage,

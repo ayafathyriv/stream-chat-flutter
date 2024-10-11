@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart' hide ButtonStyle;
 import 'package:stream_chat_flutter/src/message_actions_modal/mam_widgets.dart';
 import 'package:stream_chat_flutter/src/message_actions_modal/mark_unread_message_button.dart';
+import 'package:stream_chat_flutter/src/message_actions_modal/pan_user_button.dart';
 import 'package:stream_chat_flutter/src/message_widget/reactions/reactions_align.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -33,6 +34,7 @@ class MessageActionsModal extends StatefulWidget {
     this.reverse = false,
     this.customActions = const [],
     this.onCopyTap,
+    this.showBanUser = true,
   });
 
   /// Widget that shows the message
@@ -88,6 +90,9 @@ class MessageActionsModal extends StatefulWidget {
 
   /// Flag for showing pin action
   final bool showPinButton;
+
+  /// Flag for showing pan
+  final bool showBanUser;
 
   /// Flag for reversing message
   final bool reverse;
@@ -235,6 +240,11 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
                                 context,
                                 action,
                               )),
+                          if (widget.showBanUser && widget.message.user != null)
+                            BanUserButton(
+                              onTap: _showBanBottomSheet,
+                              user: widget.message.user,
+                            )
                         ].insertBetween(
                           Container(
                             height: 1,
@@ -364,6 +374,38 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
       }
     } catch (e) {
       _showErrorAlertBottomSheet();
+    }
+  }
+
+  /// Shows a "Ban user" bottom sheet on mobile platforms.
+  Future<void> _showBanBottomSheet() async {
+    setState(() => _showActions = false);
+    final answer = await showConfirmationBottomSheet(
+      context,
+      title: context.translations.banUserLabel,
+      icon: StreamSvgIcon.flag(
+        color: StreamChatTheme.of(context).colorTheme.accentError,
+        size: 24,
+      ),
+      question: context.translations.banUserQuestion,
+      okText: context.translations.banLabel,
+      cancelText: context.translations.cancelLabel,
+    );
+
+    if (answer == true) {
+      try {
+        Navigator.of(context).pop();
+        // final onConfirmBanTap = widget.onConfirmBanTap;
+        // if (onConfirmBanTap != null) {
+        //   await onConfirmBanTap(widget.message.user);
+        // } else {
+        await StreamChannel.of(context).channel.client.banUser(widget.message.user!.id);
+        // }
+      } catch (err) {
+        _showErrorAlertBottomSheet();
+      }
+    } else {
+      setState(() => _showActions = true);
     }
   }
 
