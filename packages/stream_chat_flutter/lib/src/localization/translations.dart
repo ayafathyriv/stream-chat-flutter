@@ -191,8 +191,17 @@ abstract class Translations {
   /// The label for "delete message"
   String get deleteMessageLabel;
 
+  ///
+  String get banUserLabel;
+
   /// The question asked while showing delete message dialog
   String get deleteMessageQuestion;
+
+  ///
+  String get banUserQuestion;
+
+  ///
+  String get banLabel;
 
   /// The label for "Delete"
   String get deleteLabel;
@@ -218,6 +227,9 @@ abstract class Translations {
 
   /// The text for showing delete/retry-delete based on [isDeleteFailed]
   String toggleDeleteRetryDeleteMessageText({required bool isDeleteFailed});
+
+  /// The text for showing ban
+  String toggleBanRetryBanUser({String? userName});
 
   /// The label for "copy message"
   String get copyMessageLabel;
@@ -561,7 +573,16 @@ class DefaultTranslations implements Translations {
   String get deleteMessageLabel => 'Delete Message';
 
   @override
+  String get banUserLabel => 'Ban User';
+
+  @override
   String get deleteMessageQuestion => 'Are you sure you want to permanently delete this\nmessage?';
+
+  @override
+  String get banUserQuestion => 'Are you sure you want to permanently ban this\nuser?';
+
+  @override
+  String get banLabel => 'Ban';
 
   @override
   String get operationCouldNotBeCompletedText => "The operation couldn't be completed.";
@@ -817,6 +838,11 @@ Attachment limit exceeded: it's not possible to add more than $limit attachments
   @override
   String get markUnreadError => 'Error marking message unread. Cannot mark unread messages older than the'
       ' newest 100 channel messages.';
+
+  @override
+  String toggleBanRetryBanUser({String? userName}) {
+    return 'Ban ${userName ?? 'User'}';
+  }
 }
 
 /// Arabic implementation of Translation strings for the stream chat widgets
@@ -1011,7 +1037,16 @@ class ArabicTranslation implements Translations {
   String get deleteMessageLabel => 'حذف رسالة';
 
   @override
+  String get banUserLabel => 'حظر المستخدم';
+
+  @override
   String get deleteMessageQuestion => 'هل ترغب في حذف هذه الرسالة؟';
+
+  @override
+  String get banUserQuestion => 'هل ترغب في حظر هذا المستخدم؟';
+
+    @override
+  String get banLabel => 'حظر';
 
   @override
   String get operationCouldNotBeCompletedText => "لا يمكن حذف هذه الرسالة";
@@ -1037,6 +1072,11 @@ class ArabicTranslation implements Translations {
   String toggleDeleteRetryDeleteMessageText({required bool isDeleteFailed}) {
     if (isDeleteFailed) return 'إعادة محاولة حذف الرسالة';
     return 'حذف الرسالة';
+  }
+
+  @override
+  String toggleBanRetryBanUser({String? userName}) {
+    return 'حظر ${userName ?? 'المستخدم'}';
   }
 
   @override
