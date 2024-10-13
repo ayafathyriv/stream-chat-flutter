@@ -1318,7 +1318,25 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
           !isThreadMessage && streamChannel?.channel.ownCapabilities.contains(PermissionType.sendReply) == true,
       showFlagButton: !isMyMessage,
       borderSide: borderSide,
-      onThreadTap: _onThreadTap,
+      onThreadTap: (message) {
+        print("onMessageTap=====================  message.replyCount ${message.replyCount} ");
+        if (message.replyCount != null && message.replyCount! > 0) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => BetterStreamBuilder<Message>(
+                stream: streamChannel!.channel.state!.messagesStream.map(
+                  (messages) => messages.firstWhere((m) => m.id == message.id),
+                ),
+                initialData: message,
+                builder: (_, data) => StreamChannel(
+                  channel: streamChannel!.channel,
+                  child: widget.threadBuilder!(context, data),
+                ),
+              ),
+            ),
+          );
+        }
+      },
       attachmentShape: RoundedRectangleBorder(
         side: BorderSide(
           color: _streamTheme.colorTheme.borders,
