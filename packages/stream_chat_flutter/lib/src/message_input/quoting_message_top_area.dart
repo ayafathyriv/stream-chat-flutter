@@ -34,9 +34,9 @@ class QuotingMessageTopArea extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(8),
-              child: StreamSvgIcon.reply(
-                color: _streamChatTheme.colorTheme.disabled,
-              ),
+              // child: StreamSvgIcon.reply(
+              //   color: _streamChatTheme.colorTheme.disabled,
+              // ),
             ),
             Text(
               context.translations.replyToMessageLabel,
