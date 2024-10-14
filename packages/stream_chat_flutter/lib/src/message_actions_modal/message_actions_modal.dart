@@ -230,7 +230,6 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
                               onTap: _togglePin,
                               pinned: widget.message.pinned,
                             ),
-                        
                           if (widget.showDeleteMessage)
                             DeleteMessageButton(
                               isDeleteFailed: widget.message.state.isDeletingFailed,
@@ -399,7 +398,7 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
         // if (onConfirmBanTap != null) {
         //   await onConfirmBanTap(widget.message.user);
         // } else {
-        await StreamChannel.of(context).channel.client.banUser(widget.message.user!.id);
+        await StreamChannel.of(context).channel.banMember(widget.message.user!.id, {});
         // }
       } catch (err) {
         _showErrorAlertBottomSheet();
