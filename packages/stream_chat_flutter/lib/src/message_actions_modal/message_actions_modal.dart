@@ -207,13 +207,13 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
                               message: widget.message,
                               channel: channel,
                             ),
-                          if (widget.showEditMessage)
-                            EditMessageButton(
-                              onTap: () {
-                                Navigator.of(context).pop();
-                                _showEditBottomSheet(context);
-                              },
-                            ),
+                          // if (widget.showEditMessage)
+                          //   EditMessageButton(
+                          //     onTap: () {
+                          //       Navigator.of(context).pop();
+                          //       _showEditBottomSheet(context);
+                          //     },
+                          //   ),
                           if (widget.showCopyMessage)
                             CopyMessageButton(
                               onTap: () {
@@ -239,11 +239,11 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
                                 context,
                                 action,
                               )),
-                          if (widget.showBanUser && widget.message.user != null)
-                            BanUserButton(
-                              onTap: _showBanBottomSheet,
-                              user: widget.message.user,
-                            )
+                          // if (widget.showBanUser && widget.message.user != null)
+                          //   BanUserButton(
+                          //     onTap: _showBanBottomSheet,
+                          //     user: widget.message.user,
+                          //   )
                         ].insertBetween(
                           Container(
                             height: 1,
