@@ -63,16 +63,16 @@ class StreamUserMentionTile extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: chatThemeData.textTheme.bodyBold,
                       ),
-                  const SizedBox(height: 2),
-                  subtitle ??
-                      Text(
-                        '@${user.id}',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: chatThemeData.textTheme.footnoteBold.copyWith(
-                          color: chatThemeData.colorTheme.textLowEmphasis,
-                        ),
-                      ),
+                  // const SizedBox(height: 2),
+                  // subtitle ??
+                  //     Text(
+                  //       '@${user.id}',
+                  //       maxLines: 1,
+                  //       overflow: TextOverflow.ellipsis,
+                  //       style: chatThemeData.textTheme.footnoteBold.copyWith(
+                  //         color: chatThemeData.colorTheme.textLowEmphasis,
+                  //       ),
+                  //     ),
                 ],
               ),
             ),
