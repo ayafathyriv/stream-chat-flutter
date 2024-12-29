@@ -1033,7 +1033,8 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
         widget.onMessageTap?.call(message);
         FocusScope.of(context).unfocus();
       },
-      showPinButton: currentUserMember != null && _userPermissions.contains(PermissionType.pinMessage),
+      showPinButton: currentUserMember?.channelRole != 'channel_member',
+      // showPinButton: currentUserMember != null && _userPermissions.contains(PermissionType.pinMessage),
     );
 
     if (widget.parentMessageBuilder != null) {
@@ -1366,7 +1367,8 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
         widget.onMessageTap?.call(message);
         FocusScope.of(context).unfocus();
       },
-      showPinButton: currentUserMember != null && _userPermissions.contains(PermissionType.pinMessage),
+      showPinButton: currentUserMember?.channelRole != 'channel_member',
+      // showPinButton: currentUserMember != null && _userPermissions.contains(PermissionType.pinMessage),
     );
 
     if (widget.messageBuilder != null) {
