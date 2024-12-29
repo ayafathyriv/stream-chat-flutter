@@ -82,6 +82,7 @@ class StreamMessageListView extends StatefulWidget {
   /// {@macro streamMessageListView}
   const StreamMessageListView({
     super.key,
+    required this.messageHeader,
     this.showScrollToBottom = true,
     this.showUnreadCountOnScrollToBottom = false,
     this.scrollToBottomBuilder,
@@ -129,6 +130,9 @@ class StreamMessageListView extends StatefulWidget {
     this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.onDrag,
     this.spacingWidgetBuilder = _defaultSpacingWidgetBuilder,
   });
+
+  /// messageHeader
+  final Widget Function(Message) messageHeader;
 
   /// [ScrollViewKeyboardDismissBehavior] the defines how this [PositionedList] will
   /// dismiss the keyboard automatically.
@@ -989,6 +993,7 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
       showResendMessage: false,
       showThreadReplyMessage: false,
       showCopyMessage: false,
+      messageHeader: widget.messageHeader,
       showDeleteMessage: false || widget.isOwner,
       showEditMessage: false,
       showMarkUnreadMessage: false,
@@ -1250,7 +1255,8 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
 
     final showInChannelIndicator = !_isThreadConversation && isThreadMessage;
     final showThreadReplyIndicator = !_isThreadConversation && hasReplies;
-    final isOnlyEmoji = message.text?.isOnlyEmoji ?? false;
+    // final isOnlyEmoji = message.text?.isOnlyEmoji ?? false;
+    final isOnlyEmoji = false;
 
     final borderSide = isOnlyEmoji ? BorderSide.none : null;
 
@@ -1261,6 +1267,7 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
     Widget messageWidget = StreamMessageWidget(
       message: message,
       reverse: isMyMessage,
+      messageHeader: widget.messageHeader,
       showReactions: !message.isDeleted,
       padding: const EdgeInsets.symmetric(horizontal: 8),
       showInChannelIndicator: showInChannelIndicator,

@@ -99,6 +99,7 @@ class StreamMessageWidget extends StatefulWidget {
     this.imageAttachmentThumbnailResizeType = 'clip',
     this.imageAttachmentThumbnailCropType = 'center',
     this.attachmentActionsModalBuilder,
+    required this.messageHeader,
   });
 
   /// {@template onMentionTap}
@@ -378,6 +379,9 @@ class StreamMessageWidget extends StatefulWidget {
   final String /*center|top|bottom|left|right*/
       imageAttachmentThumbnailCropType;
 
+  /// messageHeader
+  final Widget Function(Message) messageHeader;
+
   /// {@template copyWith}
   /// Creates a copy of [StreamMessageWidget] with specified attributes
   /// overridden.
@@ -442,9 +446,11 @@ class StreamMessageWidget extends StatefulWidget {
     String? imageAttachmentThumbnailResizeType,
     String? imageAttachmentThumbnailCropType,
     AttachmentActionsBuilder? attachmentActionsModalBuilder,
+    Widget Function(Message)? messageHeader,
   }) {
     return StreamMessageWidget(
       key: key ?? this.key,
+      messageHeader: messageHeader ?? this.messageHeader,
       onMentionTap: onMentionTap ?? this.onMentionTap,
       onThreadTap: onThreadTap ?? this.onThreadTap,
       onReplyTap: onReplyTap ?? this.onReplyTap,
@@ -545,7 +551,8 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
   /// {@template isOnlyEmoji}
   /// `true` if [message.text] contains only emoji.
   /// {@endtemplate}
-  bool get isOnlyEmoji => widget.message.text?.isOnlyEmoji == true;
+  // bool get isOnlyEmoji => widget.message.text?.isOnlyEmoji == true;
+  bool get isOnlyEmoji => false;
 
   /// {@template hasNonUrlAttachments}
   /// `true` if any of the [message]'s attachments are a giphy and do not
@@ -663,6 +670,7 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
                   child: Builder(builder: (context) {
                     return MessageWidgetContent(
                       streamChatTheme: _streamChatTheme,
+                      messageHeader: widget.messageHeader,
                       showUsername: showUsername,
                       showTimeStamp: showTimeStamp,
                       showThreadReplyIndicator: showThreadReplyIndicator,

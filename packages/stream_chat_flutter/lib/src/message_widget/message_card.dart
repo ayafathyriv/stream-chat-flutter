@@ -36,6 +36,7 @@ class MessageCard extends StatefulWidget {
     this.onLinkTap,
     this.onMentionTap,
     this.onQuotedMessageTap,
+    required this.messageHeader,
   });
 
   /// {@macro isFailedState}
@@ -116,6 +117,9 @@ class MessageCard extends StatefulWidget {
   /// {@macro reverse}
   final bool reverse;
 
+  /// messageHeader
+  final Widget Function(Message) messageHeader;
+
   @override
   State<MessageCard> createState() => _MessageCardState();
 }
@@ -161,8 +165,7 @@ class _MessageCardState extends State<MessageCard> {
     return Container(
       constraints: const BoxConstraints().copyWith(maxWidth: widthLimit),
       margin: EdgeInsets.symmetric(
-        horizontal: (widget.isFailedState ? 15.0 : 0.0) +
-            (widget.showUserAvatar == DisplayWidget.gone ? 0 : 4.0),
+        horizontal: (widget.isFailedState ? 15.0 : 0.0) + (widget.showUserAvatar == DisplayWidget.gone ? 0 : 4.0),
       ),
       clipBehavior: Clip.hardEdge,
       decoration: ShapeDecoration(
@@ -171,8 +174,7 @@ class _MessageCardState extends State<MessageCard> {
             RoundedRectangleBorder(
               side: widget.borderSide ??
                   BorderSide(
-                    color: widget.messageTheme.messageBorderColor ??
-                        Colors.transparent,
+                    color: widget.messageTheme.messageBorderColor ?? Colors.transparent,
                   ),
               borderRadius: widget.borderRadiusGeometry ?? BorderRadius.zero,
             ),
@@ -181,10 +183,10 @@ class _MessageCardState extends State<MessageCard> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          widget.messageHeader(widget.message),
           if (widget.hasQuotedMessage)
             InkWell(
-              onTap: !widget.message.quotedMessage!.isDeleted &&
-                      onQuotedMessageTap != null
+              onTap: !widget.message.quotedMessage!.isDeleted && onQuotedMessageTap != null
                   ? () => onQuotedMessageTap(widget.message.quotedMessageId)
                   : null,
               child: quotedMessageBuilder?.call(
@@ -207,19 +209,36 @@ class _MessageCardState extends State<MessageCard> {
               onAttachmentTap: widget.onAttachmentTap,
               onShowMessage: widget.onShowMessage,
               onReplyTap: widget.onReplyTap,
-              attachmentActionsModalBuilder:
-                  widget.attachmentActionsModalBuilder,
+              attachmentActionsModalBuilder: widget.attachmentActionsModalBuilder,
             ),
-          TextBubble(
-            messageTheme: widget.messageTheme,
-            message: widget.message,
-            textPadding: widget.textPadding,
-            textBuilder: widget.textBuilder,
-            isOnlyEmoji: widget.isOnlyEmoji,
-            hasQuotedMessage: widget.hasQuotedMessage,
-            hasUrlAttachments: widget.hasUrlAttachments,
-            onLinkTap: widget.onLinkTap,
-            onMentionTap: widget.onMentionTap,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Flexible(
+                child: TextBubble(
+                  messageTheme: widget.messageTheme,
+                  message: widget.message,
+                  textPadding: widget.textPadding,
+                  textBuilder: widget.textBuilder,
+                  isOnlyEmoji: widget.isOnlyEmoji,
+                  hasQuotedMessage: widget.hasQuotedMessage,
+                  hasUrlAttachments: widget.hasUrlAttachments,
+                  onLinkTap: widget.onLinkTap,
+                  onMentionTap: widget.onMentionTap,
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional.bottomEnd,
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 8),
+                  child: Text(
+                    Jiffy.parseFromDateTime(widget.message.createdAt.toLocal()).jm,
+                    style: widget.messageTheme.createdAtStyle,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -231,8 +250,7 @@ class _MessageCardState extends State<MessageCard> {
       return widget.messageTheme.messageBackgroundColor;
     }
 
-    final containsOnlyUrlAttachment =
-        widget.hasUrlAttachments && !widget.hasNonUrlAttachments;
+    final containsOnlyUrlAttachment = widget.hasUrlAttachments && !widget.hasNonUrlAttachments;
 
     if (containsOnlyUrlAttachment) {
       return widget.messageTheme.urlAttachmentBackgroundColor;

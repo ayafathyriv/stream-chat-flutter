@@ -26,6 +26,7 @@ class MessageWidgetContent extends StatelessWidget {
   /// {@macro messageWidgetContent}
   const MessageWidgetContent({
     super.key,
+    required this.messageHeader,
     required this.reverse,
     required this.isPinned,
     required this.showPinHighlight,
@@ -216,40 +217,37 @@ class MessageWidgetContent extends StatelessWidget {
   /// {@macro userAvatarBuilder}
   final Widget Function(BuildContext, User)? userAvatarBuilder;
 
+  /// messageHeader
+  final Widget Function(Message) messageHeader;
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment:
-          reverse ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+      crossAxisAlignment: reverse ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         Stack(
           clipBehavior: Clip.none,
-          alignment: reverse
-              ? AlignmentDirectional.bottomEnd
-              : AlignmentDirectional.bottomStart,
+          alignment: reverse ? AlignmentDirectional.bottomEnd : AlignmentDirectional.bottomStart,
           children: [
-            if (showBottomRow)
-              Padding(
-                padding: EdgeInsetsDirectional.only(
-                  start: !reverse ? bottomRowPadding : 0,
-                  end: reverse ? bottomRowPadding : 0,
-                  bottom: isPinned && showPinHighlight ? 6.0 : 0.0,
-                ),
-                child: _buildBottomRow(context),
-              ),
+            // if (showBottomRow)
+            //   Padding(
+            //     padding: EdgeInsetsDirectional.only(
+            //       start: !reverse ? bottomRowPadding : 0,
+            //       end: reverse ? bottomRowPadding : 0,
+            //       bottom: isPinned && showPinHighlight ? 6.0 : 0.0,
+            //     ),
+            //     child: _buildBottomRow(context),
+            //   ),
             Padding(
               padding: EdgeInsets.only(
                 bottom: isPinned && showPinHighlight ? 8.0 : 0.0,
               ),
               child: Column(
-                crossAxisAlignment:
-                    reverse ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                crossAxisAlignment: reverse ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (message.pinned &&
-                      message.pinnedBy != null &&
-                      showPinHighlight)
+                  if (message.pinned && message.pinnedBy != null && showPinHighlight)
                     PinnedMessage(
                       pinnedBy: message.pinnedBy!,
                       currentUser: streamChat.currentUser!,
@@ -258,20 +256,17 @@ class MessageWidgetContent extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      if (!reverse &&
-                          showUserAvatar == DisplayWidget.show &&
-                          message.user != null) ...[
-                        UserAvatarTransform(
-                          onUserAvatarTap: onUserAvatarTap,
-                          userAvatarBuilder: userAvatarBuilder,
-                          translateUserAvatar: translateUserAvatar,
-                          messageTheme: messageTheme,
-                          message: message,
-                        ),
-                        const SizedBox(width: 4),
-                      ],
-                      if (showUserAvatar == DisplayWidget.hide)
-                        SizedBox(width: avatarWidth + 4),
+                      // if (!reverse && showUserAvatar == DisplayWidget.show && message.user != null) ...[
+                      //   UserAvatarTransform(
+                      //     onUserAvatarTap: onUserAvatarTap,
+                      //     userAvatarBuilder: userAvatarBuilder,
+                      //     translateUserAvatar: translateUserAvatar,
+                      //     messageTheme: messageTheme,
+                      //     message: message,
+                      //   ),
+                      //   const SizedBox(width: 4),
+                      // ],
+                      // if (showUserAvatar == DisplayWidget.hide) SizedBox(width: avatarWidth + 4),
                       Flexible(
                         child: PortalTarget(
                           visible: isMobileDevice && showReactions,
@@ -298,20 +293,14 @@ class MessageWidgetContent extends StatelessWidget {
                             clipBehavior: Clip.none,
                             children: [
                               Padding(
-                                padding: showReactions
-                                    ? const EdgeInsets.only(top: 18)
-                                    : EdgeInsets.zero,
+                                padding: showReactions ? const EdgeInsets.only(top: 18) : EdgeInsets.zero,
                                 child: (message.isDeleted && !isFailedState)
                                     ? Container(
                                         margin: EdgeInsets.symmetric(
-                                          horizontal: showUserAvatar ==
-                                                  DisplayWidget.gone
-                                              ? 0
-                                              : 4.0,
+                                          horizontal: showUserAvatar == DisplayWidget.gone ? 0 : 4.0,
                                         ),
                                         child: StreamDeletedMessage(
-                                          borderRadiusGeometry:
-                                              borderRadiusGeometry,
+                                          borderRadiusGeometry: borderRadiusGeometry,
                                           borderSide: borderSide,
                                           shape: shape,
                                           messageTheme: messageTheme,
@@ -319,13 +308,13 @@ class MessageWidgetContent extends StatelessWidget {
                                       )
                                     : MessageCard(
                                         message: message,
+                                        messageHeader: messageHeader,
                                         isFailedState: isFailedState,
                                         showUserAvatar: showUserAvatar,
                                         messageTheme: messageTheme,
                                         hasQuotedMessage: hasQuotedMessage,
                                         hasUrlAttachments: hasUrlAttachments,
-                                        hasNonUrlAttachments:
-                                            hasNonUrlAttachments,
+                                        hasNonUrlAttachments: hasNonUrlAttachments,
                                         isOnlyEmoji: isOnlyEmoji,
                                         isGiphy: isGiphy,
                                         attachmentBuilders: attachmentBuilders,
@@ -334,18 +323,15 @@ class MessageWidgetContent extends StatelessWidget {
                                         onAttachmentTap: onAttachmentTap,
                                         onReplyTap: onReplyTap,
                                         onShowMessage: onShowMessage,
-                                        attachmentActionsModalBuilder:
-                                            attachmentActionsModalBuilder,
+                                        attachmentActionsModalBuilder: attachmentActionsModalBuilder,
                                         textPadding: textPadding,
                                         reverse: reverse,
                                         onQuotedMessageTap: onQuotedMessageTap,
                                         onMentionTap: onMentionTap,
                                         onLinkTap: onLinkTap,
                                         textBuilder: textBuilder,
-                                        quotedMessageBuilder:
-                                            quotedMessageBuilder,
-                                        borderRadiusGeometry:
-                                            borderRadiusGeometry,
+                                        quotedMessageBuilder: quotedMessageBuilder,
+                                        borderRadiusGeometry: borderRadiusGeometry,
                                         borderSide: borderSide,
                                         shape: shape,
                                       ),
@@ -370,9 +356,7 @@ class MessageWidgetContent extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if (reverse &&
-                          showUserAvatar == DisplayWidget.show &&
-                          message.user != null) ...[
+                      if (reverse && showUserAvatar == DisplayWidget.show && message.user != null) ...[
                         UserAvatarTransform(
                           onUserAvatarTap: onUserAvatarTap,
                           userAvatarBuilder: userAvatarBuilder,
@@ -382,8 +366,7 @@ class MessageWidgetContent extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                       ],
-                      if (showUserAvatar == DisplayWidget.hide)
-                        SizedBox(width: avatarWidth + 4),
+                      if (showUserAvatar == DisplayWidget.hide) SizedBox(width: avatarWidth + 4),
                     ],
                   ),
                   if (isDesktopDeviceOrWeb && showReactions) ...[
