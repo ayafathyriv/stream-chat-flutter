@@ -128,7 +128,11 @@ class StreamMessageListView extends StatefulWidget {
     this.paginationLoadingIndicatorBuilder,
     this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.onDrag,
     this.spacingWidgetBuilder = _defaultSpacingWidgetBuilder,
+    this.onPinMessage,
   });
+
+  ///onPinMessage
+  final VoidCallback? onPinMessage;
 
   /// [ScrollViewKeyboardDismissBehavior] the defines how this [PositionedList] will
   /// dismiss the keyboard automatically.
@@ -1033,6 +1037,7 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
         widget.onMessageTap?.call(message);
         FocusScope.of(context).unfocus();
       },
+      onPinMessage: widget.onPinMessage,
       showPinButton: currentUserMember?.channelRole != 'channel_member',
       // showPinButton: currentUserMember != null && _userPermissions.contains(PermissionType.pinMessage),
     );
@@ -1263,6 +1268,7 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
       message: message,
       reverse: isMyMessage,
       showReactions: !message.isDeleted,
+      onPinMessage: widget.onPinMessage,
       padding: const EdgeInsets.symmetric(horizontal: 8),
       showInChannelIndicator: showInChannelIndicator,
       showThreadReplyIndicator: showThreadReplyIndicator,

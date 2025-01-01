@@ -35,7 +35,11 @@ class MessageActionsModal extends StatefulWidget {
     this.customActions = const [],
     this.onCopyTap,
     this.showBanUser = true,
+   this.onPinMessage,
   });
+
+  /// onPinMessage
+  final VoidCallback? onPinMessage;
 
   /// Widget that shows the message
   final Widget messageWidget;
@@ -371,6 +375,7 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
       } else {
         await channel.unpinMessage(widget.message);
       }
+      widget.onPinMessage?.call();
     } catch (e) {
       _showErrorAlertBottomSheet();
     }
