@@ -100,7 +100,11 @@ class StreamMessageWidget extends StatefulWidget {
     this.imageAttachmentThumbnailResizeType = 'clip',
     this.imageAttachmentThumbnailCropType = 'center',
     this.attachmentActionsModalBuilder,
+    this.onPinMessage,
   });
+
+  /// onPinMessage
+  final VoidCallback? onPinMessage;
 
   /// {@template onMentionTap}
   /// Function called on mention tap
@@ -449,9 +453,11 @@ class StreamMessageWidget extends StatefulWidget {
     String? imageAttachmentThumbnailResizeType,
     String? imageAttachmentThumbnailCropType,
     AttachmentActionsBuilder? attachmentActionsModalBuilder,
+    VoidCallback? onPinMessage,
   }) {
     return StreamMessageWidget(
       key: key ?? this.key,
+      onPinMessage: onPinMessage ?? this.onPinMessage,
       onMentionTap: onMentionTap ?? this.onMentionTap,
       onThreadTap: onThreadTap ?? this.onThreadTap,
       onReplyTap: onReplyTap ?? this.onReplyTap,
@@ -1006,6 +1012,7 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
         return StreamChannel(
           channel: channel,
           child: MessageActionsModal(
+            onPinMessage: widget.onPinMessage,
             showBanUser: widget.showBanUser,
             messageWidget: widget.copyWith(
               key: const Key('MessageWidget'),
