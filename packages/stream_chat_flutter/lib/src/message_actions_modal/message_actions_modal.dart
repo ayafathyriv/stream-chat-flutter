@@ -270,17 +270,17 @@ class _MessageActionsModalState extends State<MessageActionsModal> {
       onTap: () => Navigator.of(context).maybePop(),
       child: Stack(
         children: [
-          Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 10,
-                sigmaY: 10,
-              ),
-              child: ColoredBox(
-                color: streamChatThemeData.colorTheme.overlay,
-              ),
-            ),
-          ),
+          // Positioned.fill(
+          //   child: BackdropFilter(
+          //     filter: ImageFilter.blur(
+          //       sigmaX: 10,
+          //       sigmaY: 10,
+          //     ),
+          //     child: ColoredBox(
+          //       color: streamChatThemeData.colorTheme.overlay,
+          //     ),
+          //   ),
+          // ),
           if (_showActions)
             TweenAnimationBuilder<double>(
               tween: Tween(begin: 0, end: 1),
