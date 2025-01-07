@@ -56,19 +56,25 @@ class StreamMessageText extends StatelessWidget {
                 (u) => '@${u.name}' == link,
               );
 
-              if (mentionedUser == null) return;
+                if (mentionedUser == null) return;
 
-              onMentionTap?.call(mentionedUser);
-            } else {
-              if (onLinkTap != null) {
-                onLinkTap!(link);
+                onMentionTap?.call(mentionedUser);
               } else {
-                launchURL(context, link);
+                if (onLinkTap != null) {
+                  onLinkTap!(link);
+                } else {
+                  launchURL(context, link);
+                }
               }
             }
           },
         );
       },
     );
+  }
+
+  bool _isArabic(String text) {
+    if (text.isEmpty) return false;
+    return RegExp(r'[\u0600-\u06FF]').hasMatch(text[0]);
   }
 }
