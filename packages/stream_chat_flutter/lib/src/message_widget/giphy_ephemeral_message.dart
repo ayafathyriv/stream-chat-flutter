@@ -57,10 +57,10 @@ class GiphyEphemeralMessage extends StatelessWidget {
                   color: colorTheme.barsBg,
                   margin: EdgeInsets.zero,
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(16),
-                      topLeft: Radius.circular(16),
-                      bottomLeft: Radius.circular(16),
+                    borderRadius: BorderRadiusDirectional.only(
+                      topEnd: Radius.circular(16),
+                      topStart: Radius.circular(16),
+                      bottomEnd: Radius.circular(16),
                     ),
                   ),
                   child: Column(

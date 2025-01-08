@@ -207,11 +207,11 @@ class _QuotedMessage extends StatelessWidget {
                 color: StreamChatTheme.of(context).colorTheme.disabled,
               )
             : null,
-        borderRadius: BorderRadius.only(
-          topRight: const Radius.circular(12),
-          topLeft: const Radius.circular(12),
-          bottomRight: reverse ? const Radius.circular(12) : Radius.zero,
-          bottomLeft: reverse ? Radius.zero : const Radius.circular(12),
+        borderRadius: BorderRadiusDirectional.only(
+          topEnd: const Radius.circular(12),
+          topStart: const Radius.circular(12),
+          bottomEnd: reverse ? const Radius.circular(12) : Radius.zero,
+          bottomStart: reverse ? Radius.zero : const Radius.circular(12),
         ),
       ),
       padding: const EdgeInsets.all(8),

@@ -1,6 +1,5 @@
 // ignore_for_file: lines_longer_than_80_chars
 import 'dart:async';
-import 'dart:io';
 import 'dart:math';
 
 import 'package:collection/collection.dart';
@@ -1038,18 +1037,18 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
           color: _streamTheme.colorTheme.borders,
           strokeAlign: BorderSide.strokeAlignOutside,
         ),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(attachmentBorderRadius),
-          bottomLeft: isMyMessage ? Radius.circular(attachmentBorderRadius) : Radius.zero,
-          topRight: Radius.circular(attachmentBorderRadius),
-          bottomRight: isMyMessage ? Radius.zero : Radius.circular(attachmentBorderRadius),
+        borderRadius: BorderRadiusDirectional.only(
+          topEnd: Radius.circular(attachmentBorderRadius),
+          bottomEnd: isMyMessage ? Radius.circular(attachmentBorderRadius) : Radius.zero,
+          topStart: Radius.circular(attachmentBorderRadius),
+          bottomStart: isMyMessage ? Radius.zero : Radius.circular(attachmentBorderRadius),
         ),
       ),
-      borderRadiusGeometry: BorderRadius.only(
-        topLeft: const Radius.circular(16),
-        bottomLeft: isMyMessage ? const Radius.circular(16) : Radius.zero,
-        topRight: const Radius.circular(16),
-        bottomRight: isMyMessage ? Radius.zero : const Radius.circular(16),
+      borderRadiusGeometry: BorderRadiusDirectional.only(
+        topEnd: const Radius.circular(16),
+        bottomEnd: isMyMessage ? const Radius.circular(16) : Radius.zero,
+        topStart: const Radius.circular(16),
+        bottomStart: isMyMessage ? Radius.zero : const Radius.circular(16),
       ),
       textPadding: EdgeInsets.symmetric(
         vertical: 8,
@@ -1349,17 +1348,17 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
           color: _streamTheme.colorTheme.borders,
           strokeAlign: BorderSide.strokeAlignOutside,
         ),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(attachmentBorderRadius),
-          bottomLeft: isMyMessage
+        borderRadius: BorderRadiusDirectional.only(
+          topEnd: Radius.circular(attachmentBorderRadius),
+          bottomEnd: isMyMessage
               ? Radius.circular(attachmentBorderRadius)
               : Radius.circular(
                   (hasTimeDiff || !isNextUserSame) && !(hasReplies || isThreadMessage || hasFileAttachment)
                       ? 0
                       : attachmentBorderRadius,
                 ),
-          topRight: Radius.circular(attachmentBorderRadius),
-          bottomRight: isMyMessage
+          topStart: Radius.circular(attachmentBorderRadius),
+          bottomStart: isMyMessage
               ? Radius.circular(
                   (hasTimeDiff || !isNextUserSame) && !(hasReplies || isThreadMessage || hasFileAttachment)
                       ? 0
@@ -1375,15 +1374,15 @@ class _StreamMessageListViewState extends State<StreamMessageListView> {
                 ? 4
                 : 2,
       ),
-      borderRadiusGeometry: BorderRadius.only(
-        topLeft: const Radius.circular(16),
-        bottomLeft: isMyMessage
+      borderRadiusGeometry: BorderRadiusDirectional.only(
+       topEnd : const Radius.circular(16),
+      bottomStart  : isMyMessage
             ? const Radius.circular(16)
             : Radius.circular(
                 (hasTimeDiff || !isNextUserSame) && !(hasReplies || isThreadMessage) ? 0 : 16,
               ),
-        topRight: const Radius.circular(16),
-        bottomRight: isMyMessage
+        topStart: const Radius.circular(16),
+        bottomEnd: isMyMessage
             ? Radius.circular(
                 (hasTimeDiff || !isNextUserSame) && !(hasReplies || isThreadMessage) ? 0 : 16,
               )
