@@ -1574,6 +1574,158 @@ class ArabicTranslation implements Translations {
   String get allowFileAccessMessage => 'السماح بالوصول إلى الملفات';
 
   @override
+  // ignore: lines_longer_than_80_chars
   String get markUnreadError => 'خطأ في تعليم الرسالة كغير مقروء. لا يمكن تعليم الرسائل غير المقروءة الأقدم من'
       ' أحدث 100 رسالة في القناة.';
+
+  @override
+  String get addACommentLabel => 'اضافة تعليق';
+
+  @override
+  String get addAnOptionLabel => 'اضافة خيار';
+
+  @override
+  String get anonymousPollLabel => 'سؤال مجهول';
+
+  @override
+  String get askAQuestionLabel => 'سؤال';
+
+  @override
+  String get createLabel => 'انشاء';
+
+  @override
+  String createPollLabel({bool isNew = false}) {
+    if (isNew) return 'انشاء سؤال جديد';
+    return 'انشاء سؤال';
+  }
+
+  @override
+  String get editedMessageLabel => 'تم التعديل';
+
+  @override
+  String get endVoteLabel => 'انهاء الرصيد';
+
+  @override
+  String get enterANewOptionLabel => 'ادخل خيار جديد';
+
+  @override
+  String get enterYourCommentLabel => 'ادخل تعليقك هنا';
+
+  @override
+  String get loadingPollVotesError => 'خطاء في التحميل من الرصيد';
+
+  @override
+  String? maxVotesPerPersonValidationError(int votes, Range<int> range) {
+    final (:min, :max) = range;
+
+    if (min != null && votes < min) {
+      return 'يجب ان يكون الرصيد على الاقل $min';
+    }
+
+    if (max != null && votes > max) {
+      return 'يجب ان يكون الرصيد على الاكثر $max';
+    }
+
+    return null;
+  }
+
+  @override
+  String get maximumVotesPerPersonLabel => 'حد الرصيد للمرشحين';
+
+  @override
+  String get multipleAnswersLabel => 'مجموعة من الخيارات';
+
+  @override
+  String newThreadsLabel({required int count}) {
+    if (count == 1) return '١ موضوع جديد';
+    return '$count موضوعات جديدة';
+  }
+
+  @override
+  String get noPollVotesLabel => 'لا يوجد رصيد للمرشحين لهذا الاستمارة';
+
+  @override
+  String optionLabel({bool isPlural = false}) {
+    if (isPlural) return 'خيارات';
+    return 'خيار';
+  }
+
+  @override
+  String get pollCommentsLabel => 'تعليقات الاستمارة';
+
+  @override
+  String get pollOptionDuplicateError => 'لا يمكن ان يكون الخيار مكرر';
+
+  @override
+  String get pollOptionEmptyError => 'لا يمكن ان يكون الخيار فارغ';
+
+  @override
+  String get pollOptionsLabel => 'اختيارات الاستمارة';
+
+  @override
+  String? pollQuestionValidationError(int length, Range<int> range) {
+    final (:min, :max) = range;
+
+    // Check if the question is too short.
+    if (min != null && length < min) {
+      return 'يجب ان يكون السؤال على الاقل $min حروف';
+    }
+
+    // Check if the question is too long.
+    if (max != null && length > max) {
+      return 'يجب ان يكون السؤال على الاكثر $max حروف';
+    }
+
+    return null;
+  }
+
+  @override
+  String get pollResultsLabel => 'نتايج الاستمارة';
+
+  @override
+  String pollVotingModeLabel(PollVotingMode votingMode) {
+    return votingMode.when(
+      disabled: () => 'الغاء التصويت',
+      unique: () => 'اختر واحد',
+      limited: (count) => 'اختر من $count',
+      all: () => 'اختر واحد او اكثر',
+    );
+  }
+
+  @override
+  String get questionsLabel => 'الاسئلة';
+
+  @override
+  String get repliedToLabel => ' : الرد على';
+
+  @override
+  String seeAllOptionsLabel({int? count}) {
+    if (count == null) return 'اظهار جميع الخيارات';
+    return 'اظهار جميع $count خيارات';
+  }
+
+  @override
+  String showAllVotesLabel({int? count}) {
+    if (count == null) return 'اظهار جميع الاصوات';
+    return 'اظهار جميع $count اصوات';
+  }
+
+  @override
+  String get suggestAnOptionLabel => 'اقتراح خيار';
+
+  @override
+  String get updateYourCommentLabel => 'تحديث التعليق';
+
+  @override
+  String get viewCommentsLabel => 'عرض التعليقات';
+
+  @override
+  String get viewResultsLabel => 'اظهار النتائج';
+
+  @override
+  String voteCountLabel({int? count}) => switch (count) {
+        null || < 1 => '٠ أصوات',
+        1 => '١ صوت',
+        _ => '$count اصوات',
+      };
 }

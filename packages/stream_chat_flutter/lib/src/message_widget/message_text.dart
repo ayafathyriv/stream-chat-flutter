@@ -35,26 +35,25 @@ class StreamMessageText extends StatelessWidget {
       stream: streamChat.currentUserStream.map((it) => it!.language ?? 'en'),
       initialData: streamChat.currentUser!.language ?? 'en',
       builder: (context, language) {
-        final messageText = message
-            .translate(language)
-            .replaceMentions()
-            .text
-            ?.replaceAll('\n', '\n\n')
-            .trim();
+        // ignore: lines_longer_than_80_chars
+        final messageText = message.translate(language).replaceMentions().text?.replaceAll('\n', '\n\n').trim();
 
-        return StreamMarkdownMessage(
-          data: messageText ?? '',
-          messageTheme: messageTheme,
-          selectable: isDesktopDeviceOrWeb,
-          onTapLink: (
-            String link,
-            String? href,
-            String title,
-          ) {
-            if (link.startsWith('@')) {
-              final mentionedUser = message.mentionedUsers.firstWhereOrNull(
-                (u) => '@${u.name}' == link,
-              );
+        return Directionality(
+          // ignore: lines_longer_than_80_chars
+          textDirection: _isArabic(messageText ?? '') ? TextDirection.rtl : TextDirection.ltr,
+          child: StreamMarkdownMessage(
+            data: messageText ?? '',
+            messageTheme: messageTheme,
+            selectable: isDesktopDeviceOrWeb,
+            onTapLink: (
+              String link,
+              String? href,
+              String title,
+            ) {
+              if (link.startsWith('@')) {
+                final mentionedUser = message.mentionedUsers.firstWhereOrNull(
+                  (u) => '@${u.name}' == link,
+                );
 
                 if (mentionedUser == null) return;
 
@@ -66,8 +65,8 @@ class StreamMessageText extends StatelessWidget {
                   launchURL(context, link);
                 }
               }
-            }
-          },
+            },
+          ),
         );
       },
     );
